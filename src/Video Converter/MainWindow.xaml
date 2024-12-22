@@ -1,0 +1,39 @@
+﻿<Window x:Class="Video_Converter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Video_Converter"
+        mc:Ignorable="d"
+        Title="Video Converter" Height="450" Width="800" Icon="/icon.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <Button x:Name="AdicionarVideoButton" Content="Adicionar Vídeos" Click="AdicionarVideos_Click" Margin="5"/>
+            <Button x:Name="ConverterButton" Content="Converter" Click="Converter_Click" Margin="5"/>
+        </StackPanel>
+
+        <ListView Grid.Row="1" Name="ListaVideos" Margin="10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nome do Arquivo" Width="Auto" DisplayMemberBinding="{Binding NomeArquivo}" />
+                    <GridViewColumn Header="Progresso" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ProgressBar Value="{Binding Progresso}" Height="16" Width="200" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Caminho do Arquivo" Width="200" DisplayMemberBinding="{Binding CaminhoArquivo}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <TextBlock Grid.Row="2" Name="StatusTextBlock" Margin="10" Text="Aguardando arquivos..." HorizontalAlignment="Center"/>
+    </Grid>
+</Window>
